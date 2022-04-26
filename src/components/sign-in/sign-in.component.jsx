@@ -2,7 +2,7 @@ import React, {Component} from 'react';
 import CustomButton from '../custom-button/custom-button.component';
 import FormInput from '../form-input/form-input.component';
 
-import { signInWithGoogle } from '../../utils/firebase/firebase.utils';
+import { signInWithGooglePopup, createUserProfileDocument } from '../../utils/firebase/firebase.utils';
 
 import './sign-in.styles.scss';
 
@@ -25,6 +25,11 @@ class SignIn extends Component {
     handleChange = e =>{
         const {value,name} = e.target
         this.setState({[name]: value})
+    }
+
+    googleSignUp = async () =>{
+        const {user} = await signInWithGooglePopup();
+        const userRef = await createUserProfileDocument(user)
     }
 
 
@@ -52,7 +57,7 @@ class SignIn extends Component {
             
             <div className='buttons'>
                 <CustomButton type='submit'>Sign In</CustomButton>
-                <CustomButton onClick={signInWithGoogle} isGoogleSignIn>
+                <CustomButton onClick={this.googleSignUp} isGoogleSignIn>
                 Sign In With Google
                 </CustomButton>
             </div>
