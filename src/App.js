@@ -1,5 +1,14 @@
 import React, {Component} from 'react';
 import './App.css';
+import HomePage from './pages/homepage/homepage.component';
+
+
+function App() {
+  return (
+    <div>
+      <HomePage />
+    </div>
+  );
 import {Routes, Route} from 'react-router-dom'
 import HomePage from './routes/homepage/homepage.component';
 import ShopPage from './routes/shop/shop.component';
@@ -46,7 +55,6 @@ class App extends Component {
       </div>
     );
   }
-  
 }
 
 export default App;
